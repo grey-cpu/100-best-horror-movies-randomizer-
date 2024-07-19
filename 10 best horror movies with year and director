@@ -1,0 +1,76 @@
+import random
+
+class RandomMoviePicker:
+    def __init__(self, movies):
+        self.movies = movies
+        self.unpicked_movies = list(movies)
+    
+    def pick_movie(self):
+        if not self.unpicked_movies:
+            raise ValueError("All movies have been picked.")
+        picked_movie = random.choice(self.unpicked_movies)
+        self.unpicked_movies.remove(picked_movie)
+        return picked_movie
+
+# List of 100 scariest movies with year and director
+scary_movies = [
+    ("The Exorcist", 1973, "William Friedkin"), ("Hereditary", 2018, "Ari Aster"),
+    ("The Witch", 2015, "Robert Eggers"), ("The Texas Chain Saw Massacre", 1974, "Tobe Hooper"),
+    ("The Babadook", 2014, "Jennifer Kent"), ("High Tension", 2003, "Alexandre Aja"),
+    ("Get Out", 2017, "Jordan Peele"), ("A Nightmare on Elm Street", 1984, "Wes Craven"),
+    ("Halloween", 1978, "John Carpenter"), ("Alien", 1979, "Ridley Scott"),
+    ("Psycho", 1960, "Alfred Hitchcock"), ("The Thing", 1982, "John Carpenter"),
+    ("Rosemary's Baby", 1968, "Roman Polanski"), ("Paranormal Activity", 2007, "Oren Peli"),
+    ("It Follows", 2014, "David Robert Mitchell"), ("The Conjuring", 2013, "James Wan"),
+    ("Insidious", 2010, "James Wan"), ("The Shining", 1980, "Stanley Kubrick"),
+    ("Sinister", 2012, "Scott Derrickson"), ("The Ring", 2002, "Gore Verbinski"),
+    ("The Grudge", 2004, "Takashi Shimizu"), ("The Omen", 1976, "Richard Donner"),
+    ("Poltergeist", 1982, "Tobe Hooper"), ("The Others", 2001, "Alejandro Amenábar"),
+    ("Don't Look Now", 1973, "Nicolas Roeg"), ("Suspiria", 1977, "Dario Argento"),
+    ("Carrie", 1976, "Brian De Palma"), ("The Blair Witch Project", 1999, "Daniel Myrick, Eduardo Sánchez"),
+    ("The Silence of the Lambs", 1991, "Jonathan Demme"), ("Jaws", 1975, "Steven Spielberg"),
+    ("An American Werewolf in London", 1981, "John Landis"), ("The Fly", 1986, "David Cronenberg"),
+    ("Let the Right One In", 2008, "Tomas Alfredson"), ("The Haunting", 1963, "Robert Wise"),
+    ("The Innocents", 1961, "Jack Clayton"), ("28 Days Later", 2002, "Danny Boyle"),
+    ("REC", 2007, "Jaume Balagueró, Paco Plaza"), ("The Orphanage", 2007, "J.A. Bayona"),
+    ("Martyrs", 2008, "Pascal Laugier"), ("Audition", 1999, "Takashi Miike"),
+    ("Ringu", 1998, "Hideo Nakata"), ("Pulse", 2001, "Kiyoshi Kurosawa"),
+    ("The Descent", 2005, "Neil Marshall"), ("Dog Soldiers", 2002, "Neil Marshall"),
+    ("Drag Me to Hell", 2009, "Sam Raimi"), ("Hostel", 2005, "Eli Roth"),
+    ("The Cabin in the Woods", 2012, "Drew Goddard"), ("Evil Dead 2", 1987, "Sam Raimi"),
+    ("Dead Alive", 1992, "Peter Jackson"), ("Shaun of the Dead", 2004, "Edgar Wright"),
+    ("Tucker and Dale vs. Evil", 2010, "Eli Craig"), ("You're Next", 2011, "Adam Wingard"),
+    ("The Babadook", 2014, "Jennifer Kent"), ("The Witch", 2015, "Robert Eggers"),
+    ("The Exorcist", 1973, "William Friedkin"), ("Hereditary", 2018, "Ari Aster"),
+    ("The Texas Chain Saw Massacre", 1974, "Tobe Hooper"), ("High Tension", 2003, "Alexandre Aja"),
+    ("Get Out", 2017, "Jordan Peele"), ("A Nightmare on Elm Street", 1984, "Wes Craven"),
+    ("Halloween", 1978, "John Carpenter"), ("Alien", 1979, "Ridley Scott"),
+    ("Psycho", 1960, "Alfred Hitchcock"), ("The Thing", 1982, "John Carpenter"),
+    ("Rosemary's Baby", 1968, "Roman Polanski"), ("Paranormal Activity", 2007, "Oren Peli"),
+    ("It Follows", 2014, "David Robert Mitchell"), ("The Conjuring", 2013, "James Wan"),
+    ("Insidious", 2010, "James Wan"), ("The Shining", 1980, "Stanley Kubrick"),
+    ("Sinister", 2012, "Scott Derrickson"), ("The Ring", 2002, "Gore Verbinski"),
+    ("The Grudge", 2004, "Takashi Shimizu"), ("The Omen", 1976, "Richard Donner"),
+    ("Poltergeist", 1982, "Tobe Hooper"), ("The Others", 2001, "Alejandro Amenábar"),
+    ("Don't Look Now", 1973, "Nicolas Roeg"), ("Suspiria", 1977, "Dario Argento"),
+    ("Carrie", 1976, "Brian De Palma"), ("The Blair Witch Project", 1999, "Daniel Myrick, Eduardo Sánchez"),
+    ("The Silence of the Lambs", 1991, "Jonathan Demme"), ("Jaws", 1975, "Steven Spielberg"),
+    ("An American Werewolf in London", 1981, "John Landis"), ("The Fly", 1986, "David Cronenberg"),
+    ("Let the Right One In", 2008, "Tomas Alfredson"), ("The Haunting", 1963, "Robert Wise"),
+    ("The Innocents", 1961, "Jack Clayton"), ("28 Days Later", 2002, "Danny Boyle"),
+    ("REC", 2007, "Jaume Balagueró, Paco Plaza"), ("The Orphanage", 2007, "J.A. Bayona"),
+    ("Martyrs", 2008, "Pascal Laugier"), ("Audition", 1999, "Takashi Miike"),
+    ("Ringu", 1998, "Hideo Nakata"), ("Pulse", 2001, "Kiyoshi Kurosawa"),
+    ("The Descent", 2005, "Neil Marshall"), ("Dog Soldiers", 2002, "Neil Marshall"),
+    ("Drag Me to Hell", 2009, "Sam Raimi"), ("Hostel", 2005, "Eli Roth"),
+    ("The Cabin in the Woods", 2012, "Drew Goddard"), ("Evil Dead 2", 1987, "Sam Raimi")
+]
+
+picker = RandomMoviePicker(scary_movies)
+
+# Pick a movie
+try:
+    movie = picker.pick_movie()
+    print(f"Movie: {movie[0]}, Year: {movie[1]}, Director: {movie[2]}")
+except ValueError:
+    print("All movies have been picked.")
